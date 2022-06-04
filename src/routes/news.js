@@ -53,7 +53,7 @@ newsRouter.get('/article/:id/:mid', async(req, res) => {
     try {
         const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts/${articleID}`)
         const newsMedia = await axios.get(`https://www.gulte.com/wp-json/wp/v2/media/${mediaID}`) //added image by Sreenivas
-        res.render('newsSingle', { article : newsAPI.data, media: newsMedia.data })
+        res.render('newsSingle', { article : newsAPI.data, media: newsMedia.data, artid: articleID, mdid: mediaID })
     } catch (err) {
         if(err.response) {
             res.render('newsSingle', { article : null })
