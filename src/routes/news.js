@@ -5,7 +5,7 @@ const axios = require('axios')
 
 newsRouter.get('', async(req, res) => {
    try {
-        const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts/?per_page=100&page=1`)
+        const newsAPI = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/posts/?per_page=100&page=1`)
         res.render('news', { articles : newsAPI.data })
     } catch (err) {
         if(err.response) {
@@ -27,7 +27,7 @@ newsRouter.get('/page/:p', async(req, res) => {
     let pageNo = req.params.p
 
     try {
-        const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts/?per_page=100&page=${pageNo}`)
+        const newsAPI = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/posts/?per_page=100&page=${pageNo}`)
        
         res.render('news', { articles : newsAPI.data })
     } catch (err) {
@@ -51,8 +51,8 @@ newsRouter.get('/article/:id/:mid', async(req, res) => {
     let mediaID =  req.params.mid
 
     try {
-        const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts/${articleID}`)
-        const newsMedia = await axios.get(`https://www.gulte.com/wp-json/wp/v2/media/${mediaID}`) //added image by Sreenivas
+        const newsAPI = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/posts/${articleID}`)
+        const newsMedia = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/media/${mediaID}`) //added image by Sreenivas
         res.render('newsSingle', { article : newsAPI.data, media: newsMedia.data, artid: articleID, mdid: mediaID })
     } catch (err) {
         if(err.response) {
@@ -74,8 +74,8 @@ newsRouter.get('/slug/:slug', async(req, res) => {
     let slugID = req.params.slug
     console.log(slugID)
     try {
-        const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts?slug=${slugID}`)
-        console.log(`https://www.gulte.com/wp-json/wp/v2/posts?slug=${slugID}`)
+        const newsAPI = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/posts?slug=${slugID}`)
+        console.log(`https://telugu.gulte.com/wp-json/wp/v2/posts?slug=${slugID}`)
         res.render('newsSlug', { article : newsAPI.data })
     } catch (err) {
         if(err.response) {
@@ -97,7 +97,7 @@ newsRouter.get('/slug/:slug', async(req, res) => {
 newsRouter.post('', async(req, res) => {
     let search = req.body.search
     try {
-        const newsAPI = await axios.get(`https://www.gulte.com/wp-json/wp/v2/posts?search=${search}`)
+        const newsAPI = await axios.get(`https://telugu.gulte.com/wp-json/wp/v2/posts?search=${search}`)
         res.render('newsSearch', { articles : newsAPI.data })
     } catch (err) {
         if(err.response) {
