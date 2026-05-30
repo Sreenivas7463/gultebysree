@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path');
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -11,7 +12,8 @@ app.use('/img', express.static(__dirname + 'public/img'))
 app.use('/js', express.static(__dirname + 'public/js'))
 
 // Templating Engine
-app.set('views', './src/views')
+// app.set('views', './src/views')
+app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')
 
 app.use(bodyParser.urlencoded({ extended : true }))
